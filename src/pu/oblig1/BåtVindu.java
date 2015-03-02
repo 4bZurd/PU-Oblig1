@@ -1,0 +1,249 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pu.oblig1;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+/**
+ *
+ *
+ * @author Odd
+ */
+
+public class BåtVindu extends JFrame
+{
+    private final JTextArea utskrift;
+    private final JButton nyeier;
+    private final JButton nyeiernybåt;
+    private final JButton fjerneier;
+    private final JButton skrivut;
+    private final JButton skifteier;
+    private final JButton skrivliste;
+    private final JButton velgfil;
+    
+    private final JTextField merke;
+    private final JTextField type;
+    private final JTextField regnr;
+    private final JTextField årsmod;
+    private final JTextField lengde;
+    private final JTextField hk;
+    private final JTextField skrogfarge;
+    private final JTextField fornavn;
+    private final JTextField etternavn;
+    private final JTextField adresse;
+    
+    private String filsti;
+    private EierRegister register;
+    private final Lytter lytter;
+
+    
+    /**
+     * Vinduets konstruktør som oppretter vinduets knapper og tekstfelt.
+     * 
+     * @param reg tar i mot EierRegister som parameter.
+     */
+
+    public BåtVindu( EierRegister reg )
+    {
+        super("Båt vindu");
+        lytter = new Lytter();
+        register = reg;
+        
+        //Oppretter vindues knapper
+        nyeier = new JButton("Ny Eier");
+        nyeiernybåt = new JButton("Ny Eier/Båt");
+        fjerneier = new JButton("Fjern Eier");
+        skrivut = new JButton("Finn");
+        skifteier = new JButton("Skift Eier");
+        skrivliste = new JButton("Skriv ut Liste");
+        velgfil = new JButton("Velg Fil");
+        
+        
+        //Opretter tekstfielt for registrering av båt/eier     
+        merke = new JTextField( 15 );
+        type = new JTextField( 10 );
+        regnr = new JTextField( 8 );
+        årsmod = new JTextField( 4 );
+        lengde = new JTextField( 3 );
+        hk = new JTextField( 4 );
+        skrogfarge = new JTextField( 15 );
+        fornavn =  new JTextField( 15 );
+        etternavn = new JTextField( 15 );
+        adresse = new JTextField( 20 );
+        
+        
+        // utskriftsområdets egenskaper
+        utskrift = new JTextArea( 100, 100 );
+        utskrift.setEditable( false );
+        
+        
+        // legger elementene i vinduet fra venstre mot høyre.
+        Container c = getContentPane();
+        c.setLayout( new FlowLayout() );
+        
+        c.add( nyeier );
+        c.add( nyeiernybåt );
+        c.add( fjerneier );
+        c.add( skrivut );
+        c.add( skifteier );
+        c.add( skrivliste );
+        c.add( velgfil );
+        c.add( new JLabel("Fornavn: ") );
+        c.add( fornavn );
+        c.add( new JLabel("Etternavn: "));
+        c.add( etternavn );
+        c.add( new JLabel("Adresse: "));
+        c.add( adresse );
+        c.add( new JLabel("Merke: ") );
+        c.add( merke );
+        c.add( new JLabel("Type: ") );
+        c.add( type );
+        c.add( new JLabel("Regnr: "));
+        c.add( regnr );
+        c.add( new JLabel("Årsmod: ") );
+        c.add( årsmod );
+        c.add( new JLabel("Lengde: "));
+        c.add( lengde );
+        c.add( new JLabel("HK: ") );
+        c.add( hk );
+        c.add( new JLabel("Skrogfarge: ") );
+        c.add( skrogfarge );
+        c.add( utskrift );
+        
+        //knytter ActionListener til knappene 
+        nyeier.addActionListener( lytter );
+        nyeiernybåt.addActionListener( lytter );
+        fjerneier.addActionListener( lytter );
+        skrivut.addActionListener( lytter );
+        skifteier.addActionListener( lytter );
+        skrivliste.addActionListener( lytter );
+        velgfil.addActionListener( lytter );
+    }
+    
+    public void nyEier()
+    {
+        String fnavn = fornavn.getText();
+        String enavn = etternavn.getText();
+        String adr = adresse.getText();
+        //Båteier ny = new Båteier();                   // ikke ferdig
+        register.settInn( ny );
+    }
+    
+    public void nyEierNyBåt()
+    {
+        String fnavn = fornavn.getText();
+        String enavn = etternavn.getText();
+        String adr = adresse.getText();
+        String m = merke.getText();
+        String typ = type.getText();
+        String reg = type.getText();
+        String år = årsmod.getText();
+        String leng = lengde.getText();
+        String hest = hk.getText();
+        String sfarge = skrogfarge.getText();
+        Båt båt = new Båt();
+        //Båteier ny = new Båteier();  
+    }
+    
+    public void fjernEier()
+    {
+        
+    }
+    
+    public void skrivUt()
+    {
+        
+    }
+    
+    public void skiftEier()
+    {
+        
+    }
+    
+    public void skrivListe()
+    {
+        register.skrivListe( utskrift );
+    }
+    
+    public void velgFil()
+    {
+        JFileChooser fil = new JFileChooser();
+        fil.setCurrentDirectory( new File (".") );
+        int svar =  fil.showOpenDialog( this );
+        
+        if( svar == JFileChooser.APPROVE_OPTION )
+        {
+            try( ObjectInputStream input = new ObjectInputStream( 
+                    new FileInputStream( filsti )) )
+            {
+                register = (EierRegister) input.readObject();
+            }
+            catch( ClassNotFoundException e )
+            {
+                // passende feilhåndtering
+            }
+            catch( FileNotFoundException e )
+            {
+                // passende feilhåndtering
+            }
+            catch( IOException e )
+            {
+                // passende feilhåndtering
+            }
+        }
+        
+    }
+    
+    private class Lytter implements ActionListener
+    {
+        @Override
+        public void actionPerformed( ActionEvent e )
+        {
+            if( e.getSource() == nyeier ) 
+            {
+                nyEier();
+            }
+            else if( e.getSource() == nyeiernybåt )
+            {
+                nyEierNyBåt();
+            }
+            else if( e.getSource() == fjerneier )
+            {
+                fjernEier();
+            }
+            else if( e.getSource() == skrivut )
+            {
+                skrivUt();
+            }
+            else if( e.getSource() == skifteier )
+            {
+                skiftEier();
+            }
+            else if( e.getSource() == skrivliste )
+            {
+                skrivListe();
+            }
+            else if( e.getSource() == velgfil )
+            {
+                velgFil();
+            }
+        }
+    }
+}
