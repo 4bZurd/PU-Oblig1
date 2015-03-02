@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public class Båt implements Serializable
 {
+    
     private int regnr;
     private int lengde;
     private String merket;
@@ -22,16 +23,16 @@ public class Båt implements Serializable
       
     //Klassens konstruktør
     public Båt(int rnr, int fot, int hk, String merke, String type, String farge)
-  {
-    rnr = regnr;
-    fot = lengde;
-    hk = hkr;
-    merke = merket;
-    type = typen;
-    farge = fargen;
-  }
+    {
+        rnr = regnr;
+        fot = lengde;
+        hk = hkr;
+        merke = merket;
+        type = typen;
+        farge = fargen;
+    }
   
-  public int getRegnr() 
+    public int getRegnr() 
     {
         return regnr;
     }
@@ -39,11 +40,10 @@ public class Båt implements Serializable
     //Klassens toStringmetode, skriver ut informasjon om båten
     public String toString()
     {
-       String ut = "";
-               ut = "Registreringsnummer: " + regnr + "\nLengde: " + lengde +
+        String ut = "Registreringsnummer: " + regnr + "\nLengde: " + lengde +
                        "\nMerke: " + merket + "\nType: " + typen + 
                        "\nHestekrefter:" + hkr + "\nFarge:" + fargen;
-               return ut;
+        return ut;
     }
 }
-}
+
