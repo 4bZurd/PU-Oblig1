@@ -30,6 +30,12 @@ public class Båt implements Serializable
     type = typen;
     farge = fargen;
   }
+  
+  public int getRegnr() 
+    {
+        return regnr;
+    }
+  
     //Klassens toStringmetode, skriver ut informasjon om båten
     public String toString()
     {
