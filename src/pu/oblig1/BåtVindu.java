@@ -50,7 +50,7 @@ public class BåtVindu extends JFrame
     private final JTextField adresse;
     
     private String filsti;
-    private EierRegister register;
+    private Register register;
     private final Lytter lytter;
 
     
@@ -60,7 +60,7 @@ public class BåtVindu extends JFrame
      * @param reg tar i mot EierRegister som parameter.
      */
 
-    public BåtVindu( EierRegister reg )
+    public BåtVindu( Register reg )
     {
         super("Båt vindu");
         lytter = new Lytter();
@@ -193,7 +193,7 @@ public class BåtVindu extends JFrame
             try( ObjectInputStream input = new ObjectInputStream( 
                     new FileInputStream( filsti )) )
             {
-                register = (EierRegister) input.readObject();
+                register = (Register) input.readObject();
             }
             catch( ClassNotFoundException e )
             {
