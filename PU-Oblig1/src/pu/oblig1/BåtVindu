@@ -1,0 +1,100 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pu.oblig1;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+/**
+ *
+ *
+ * @author Odd
+ */
+public class BåtVindu extends JFrame
+{
+    private final JTextArea utskrift;
+    private final JButton nyeier;
+    private final JButton nyeiernybåt;
+    private final JButton fjerneier;
+    private final JButton skrivut;
+    private final JButton skifteier;
+    private final JButton skrivliste;
+    private final JButton velgfil;
+    
+    private final JTextField merke;
+    private final JTextField type;
+    private final JTextField regnr;
+    private final JTextField årsmod;
+    private final JTextField lengde;
+    private final JTextField hk;
+    private final JTextField skrogfarge;
+    
+    private String filsti;
+    private final Båtregister;
+    private final Lytter lytter;
+
+    
+    /**
+     * Vinduets konstruktør som oppretter vinduets knapper og textfelt;
+     * 
+     */
+
+    public BåtVindu( Båtregister reg )
+    {
+        super("Båt vindu");
+        
+        //Oppretter vindues knapper
+        nyeier = new JButton("Ny Eier");
+        nyeiernybåt = new JButton("Ny Eier/Båt");
+        fjerneier = new JButton("Fjern Eier");
+        skrivut = new JButton("Finn");
+        skifteier = new JButton("Skift Eier");
+        skrivliste = new JButton("Skriv ut Liste");
+        velgfil = new JButton("Velg Fil");
+        
+        //Opretter tekstfielt        
+        merke = new JTextField(15);
+        type = new JTextField(10);
+        regnr = new JTextField(8);
+        årsmod = new JTextField(4);
+        lengde = new JTextField(3);
+        hk = new JTextField(4);
+        skrogfarge = new JTextField(15);
+        
+        // utskriftsområdets egenskaper
+        utskrift = new JTextArea( 100, 100 );
+        utskrift.setEditable( false );
+        
+        
+        // legger elementene i vinduet fra venstre mot høyre.
+        Container c = getContentPane();
+        c.setLayout( new FlowLayout() );
+        
+        c.add( new JLabel("Merke: ") );
+        c.add( merke );
+        c.add( new JLabel("Type: ") );
+        c.add( type );
+        c.add();
+        c.add();
+        c.add();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+}
