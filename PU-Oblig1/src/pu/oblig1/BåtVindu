@@ -7,8 +7,11 @@ package pu.oblig1;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -37,7 +40,7 @@ public class BåtVindu extends JFrame
     private final JTextField skrogfarge;
     
     private String filsti;
-    private final Båtregister;
+    private final Båtregister register;
     private final Lytter lytter;
 
     
@@ -49,6 +52,8 @@ public class BåtVindu extends JFrame
     public BåtVindu( Båtregister reg )
     {
         super("Båt vindu");
+        lytter = new Lytter();
+        register = reg;
         
         //Oppretter vindues knapper
         nyeier = new JButton("Ny Eier");
@@ -77,24 +82,108 @@ public class BåtVindu extends JFrame
         Container c = getContentPane();
         c.setLayout( new FlowLayout() );
         
+        
+        c.add( nyeier );
+        c.add( nyeiernybåt );
+        c.add( fjerneier );
+        c.add( skrivut );
+        c.add( skifteier );
+        c.add( skrivliste );
+        c.add( velgfil );
+        
         c.add( new JLabel("Merke: ") );
         c.add( merke );
         c.add( new JLabel("Type: ") );
         c.add( type );
-        c.add();
-        c.add();
-        c.add();
+        c.add( new JLabel("Regnr: "));
+        c.add( regnr );
+        c.add( new JLabel("Årsmod: ") );
+        c.add( årsmod );
+        c.add( new JLabel("Lengde: "));
+        c.add( lengde );
+        c.add( new JLabel("HK: ") );
+        c.add( hk );
+        c.add( new JLabel("Skrogfarge: ") );
+        c.add( skrogfarge );
+        c.add( utskrift );
+        
+        nyeier.addActionListener( lytter );
+        nyeiernybåt.addActionListener( lytter );
+        fjerneier.addActionListener( lytter );
+        skrivut.addActionListener( lytter );
+        skifteier.addActionListener( lytter );
+        skrivliste.addActionListener( lytter );
+        velgfil.addActionListener( lytter );
     }
     
+    public void nyEier()
+    {
+        
+    }
     
+    public void nyEierNyBåt()
+    {
+        
+    }
     
+    public void fjernEier()
+    {
+        
+    }
     
+    public void skrivUt()
+    {
+        
+    }
     
+    public void skiftEier()
+    {
+        
+    }
     
+    public void skrivListe()
+    {
+        
+    }
     
+    public void velgFil()
+    {
+        
+    }
     
-    
-    
-    
-
+    private class Lytter implements ActionListener
+    {
+        @Override
+        public void actionPerformed( ActionEvent e )
+        {
+            if( e.getSource() == nyeier ) 
+            {
+                nyEier();
+            }
+            else if( e.getSource() == nyeiernybåt )
+            {
+                nyEierNyBåt();
+            }
+            else if( e.getSource() == fjerneier )
+            {
+                fjernEier();
+            }
+            else if( e.getSource() == skrivut )
+            {
+                skrivUt();
+            }
+            else if( e.getSource() == skifteier )
+            {
+                skiftEier();
+            }
+            else if( e.getSource() == skrivliste )
+            {
+                skrivListe();
+            }
+            else if( e.getSource() == velgfil )
+            {
+                velgFil();
+            }
+        }
+    }
 }
