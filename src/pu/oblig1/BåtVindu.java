@@ -12,8 +12,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -22,8 +24,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- *
- *
  * @author Odd
  */
 
@@ -128,13 +128,13 @@ public class BåtVindu extends JFrame
         c.add( utskrift );
         
         //knytter ActionListener til knappene 
-        nyeier.addActionListener( lytter );
-        nyeiernybåt.addActionListener( lytter );
-        fjerneier.addActionListener( lytter );
-        skrivut.addActionListener( lytter );
-        skifteier.addActionListener( lytter );
-        skrivliste.addActionListener( lytter );
-        velgfil.addActionListener( lytter );
+        nyeier.addActionListener( this.lytter );
+        nyeiernybåt.addActionListener( this.lytter );
+        fjerneier.addActionListener( this.lytter );
+        skrivut.addActionListener( this.lytter );
+        skifteier.addActionListener( this.lytter );
+        skrivliste.addActionListener( this.lytter );
+        velgfil.addActionListener( this.lytter );
     }
     
     public void nyEier()
@@ -162,26 +162,44 @@ public class BåtVindu extends JFrame
         //Båteier ny = new Båteier();  
     }
     
+    /**
+     * Kaller register sin finnEier og sltter eieren ved hjelp
+     * av register sin slettBåteier hvis eier ikke eier en båt. 
+     * 
+     */
+    
     public void fjernEier()
     {
         
     }
+    
+    /**
+     * skriver ut info for en gitt båteier.
+     */
     
     public void skrivUt()
     {
         
     }
     
+    /**
+     * metode for eierskifte av båt
+     */
+    
     public void skiftEier()
     {
         
     }
     
+    /**
+     * skriver ut hele register lista med all info om eier og båt.
+     */
+    
     public void skrivListe()
     {
         register.skrivListe( utskrift );
     }
-    
+
     public void velgFil()
     {
         JFileChooser fil = new JFileChooser();
@@ -194,6 +212,7 @@ public class BåtVindu extends JFrame
                     new FileInputStream( filsti )) )
             {
                 register = (Register) input.readObject();
+                register.første.setNesteNr( input.readInt() );
             }
             catch( ClassNotFoundException e )
             {
@@ -208,9 +227,32 @@ public class BåtVindu extends JFrame
                 // passende feilhåndtering
             }
         }
-        
     }
     
+    /**
+     * Skriver register objektet til fil samt alle addresser og objekter 
+     * som hører til register. Deretter lagrer den medlemmsnummerets hjelpevariabel
+     * til fil.
+     */
+    
+    public void skrivTilFil()
+    {
+        try( ObjectOutputStream output = new ObjectOutputStream( 
+                    new FileOutputStream( filsti )) )
+        {
+            output.writeObject( register );
+            output.writeInt( register.første.getNesteNr() );
+        }
+        catch( FileNotFoundException e )
+        {
+            // passende feilhåndtering
+        }
+        catch( IOException e )
+        {
+            // filslutt
+        }
+    }
+
     private class Lytter implements ActionListener
     {
         @Override
