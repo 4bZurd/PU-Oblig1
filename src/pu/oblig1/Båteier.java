@@ -16,8 +16,9 @@ public class Båteier
     private String adresse;
     private int medlemsnummer;
     private static int nestenr = 1;
+    Båteier neste;
     Båt båt;
-    Båt neste;
+
     
     // Kobling til båt i denne klassen, hentes fra filObjekt?
     
