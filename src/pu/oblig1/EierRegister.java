@@ -41,7 +41,12 @@ public class EierRegister
         løper.neste = ny;
     }
     
-    public void finnEier()
+    public Båteier finnEier( String fornavn, String etternavn, int nr )
+    {
+        
+    }
+    
+    public boolean slettEier()
     {
         
     }
@@ -49,6 +54,11 @@ public class EierRegister
     public void finnBåt()
     {
         
+    }
+    
+    public Båteier finnBakerste()
+    {
+
     }
     
     public void skrivListe( JTextArea utskriftområde )
