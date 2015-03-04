@@ -261,7 +261,7 @@ public class BåtVindu extends JFrame
         {
             if( e.getSource() == nyeier ) 
             {
-                nyEier();
+                nyEierNyBåt();
             }
             else if( e.getSource() == nyeiernybåt )
             {

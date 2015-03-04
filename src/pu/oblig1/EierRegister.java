@@ -74,13 +74,13 @@ public class EierRegister
         return false;
     }
     
-    public Båt finnBåt( int regnr)
+    public Båt finnBåt( String regnr)
     {
         Båteier løper = første;
         
         while( løper != null )
         {
-            if( løper.getBåt().getRegnr() == (regnr) )
+            if( løper.getBåt().getRegnr().equals(regnr) )
             {
                 return løper.getBåt();
             }
