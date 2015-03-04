@@ -5,11 +5,13 @@
  */
 package pu.oblig1;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Thomas
  */
-public class Båteier 
+public class Båteier implements Serializable
 {
     private String fornavn;
     private String etternavn;
@@ -26,7 +28,7 @@ public class Båteier
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.adresse = adresse;
-        this.nestenr = nestenr++; 
+        medlemsnummer = nestenr++; 
         båt = null;
     }
     
@@ -37,7 +39,7 @@ public class Båteier
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.adresse = adresse;
-        this.nestenr = nestenr++; 
+        medlemsnummer = nestenr++; 
         this.båt = båt;
     }
 
@@ -105,15 +107,18 @@ public class Båteier
     public String toString()
     {
         StringBuilder bygger = new StringBuilder();
-        bygger.append("Fornavn: ");
+        bygger.append("\nFornavn: ");
         bygger.append(fornavn);
         bygger.append("\nEtternavn: ");
         bygger.append(etternavn);
         bygger.append("\nAdresse: ");
         bygger.append(adresse);
-        bygger.append("\nMedlemsnummer: ");
+        bygger.append("\nMedlemsnummer: \n");
         bygger.append(medlemsnummer);
-        bygger.append(båt.toString());
+        
+        if( båt != null)
+            bygger.append(båt.toString());
+        
         return bygger.toString();
     }
 }

@@ -5,13 +5,14 @@
  */
 package pu.oblig1;
 
+import java.io.Serializable;
 import javax.swing.JTextArea;
 
 /**
  *
  * @author Odd
  */
-public class EierRegister
+public class EierRegister implements Serializable
 {
     Båteier første;
     

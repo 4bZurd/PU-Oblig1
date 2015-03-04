@@ -40,7 +40,7 @@ public class Båt implements Serializable
     //Klassens toStringmetode, skriver ut informasjon om båten
     public String toString()
     {
-        String ut = "Registreringsnummer: " + regnr + "\nLengde: " + lengde +
+        String ut = "\nRegistreringsnummer: " + regnr + "\nLengde: " + lengde +
                        "\nMerke: " + merket + "\nType: " + typen + 
                        "\nHestekrefter:" + hkr + "\nFarge:" + fargen;
         return ut;

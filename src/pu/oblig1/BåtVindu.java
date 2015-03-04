@@ -225,8 +225,9 @@ public class BåtVindu extends JFrame
         
         if( svar == JFileChooser.APPROVE_OPTION )
         {
+            filsti = fil.getSelectedFile().getAbsolutePath();
             try( ObjectInputStream input = new ObjectInputStream( 
-                    new FileInputStream( filsti = fil.getSelectedFile().getAbsolutePath() )) )
+                    new FileInputStream( filsti )) )
             {
                 register = (EierRegister) input.readObject();
                 register.første.setNesteNr( input.readInt() );
