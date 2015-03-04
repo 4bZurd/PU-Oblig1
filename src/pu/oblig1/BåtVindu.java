@@ -136,16 +136,16 @@ public class BåtVindu extends JFrame
         skrivliste.addActionListener( this.lytter );
         velgfil.addActionListener( this.lytter );
     }
-    
+ /*   
     public void nyEier()
     {
         String fnavn = fornavn.getText();
         String enavn = etternavn.getText();
         String adr = adresse.getText();
-        //Båteier ny = new Båteier();                   // ikke ferdig
+        Båteier ny = new Båteier( );                   // ikke ferdig
         register.settInn( ny );
     }
-    
+   */ 
     public void nyEierNyBåt()
     {
         String fnavn = fornavn.getText();
@@ -155,12 +155,12 @@ public class BåtVindu extends JFrame
         String typ = type.getText();
         String reg = type.getText();
         String år = årsmod.getText();
-        String leng = lengde.getText();
-        String hest = hk.getText();
+        int leng = Integer.parseInt(lengde.getText());
+        int hest = Integer.parseInt(hk.getText());
         String sfarge = skrogfarge.getText();
-        Båt båt = new Båt();
-        //Båteier ny = new Båteier();  
-    }
+        Båt båt = new Båt( reg, leng, hest, m, typ, sfarge );
+        Båteier ny = new Båteier( fnavn, enavn, adr, båt );  
+    } 
     
     /**
      * Kaller register sin finnEier og sltter eieren ved hjelp
