@@ -18,9 +18,9 @@ public class BåtProg
     {
         EierRegister register = new EierRegister();
         BåtVindu vindu = new BåtVindu(register);
-        vindu.velgFil();
         vindu.setSize(1024, 768);
         vindu.setVisible(true);
+        vindu.velgFil();
         
         vindu.addWindowListener(new WindowAdapter() {
         @Override
