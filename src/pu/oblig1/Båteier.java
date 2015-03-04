@@ -18,9 +18,8 @@ public class Båteier
     private static int nestenr = 1;
     Båteier neste;
     private Båt båt;
-
     
-    // Kobling til båt i denne klassen, hentes fra filObjekt?
+    // Benyttes dersom eierskap til båt er ukjent. 4 parametre i konstruktør.
     
     public Båteier(String fornavn, String etternavn, String adresse, int medlemsnummer)
     {
@@ -30,6 +29,8 @@ public class Båteier
         setMedlemsnummer(nestenr++); 
         båt = null;
     }
+    
+    //Benyttes dersom man vet hvilken båt som eieren eier. 5 parametre.
     
     public Båteier(String fornavn, String etternavn, String adresse, int medlemsnummer, Båt b)
     {
@@ -89,6 +90,16 @@ public class Båteier
     {
         nestenr = n;
     }
+
+    public Båt getBåt() {
+        return båt;
+    }
+
+    public void setBåt(Båt båt) {
+        this.båt = båt;
+    }
+    
+    // Returnerer en String med eierinformasjon som kan vises i vindu.
     
     @Override
     public String toString()
