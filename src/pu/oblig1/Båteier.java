@@ -17,29 +17,27 @@ public class Båteier
     private int medlemsnummer;
     private static int nestenr = 1;
     Båteier neste;
-    Båt båt;
+    private Båt båt;
 
     
     // Kobling til båt i denne klassen, hentes fra filObjekt?
     
+    public Båteier(String fornavn, String etternavn, String adresse, int medlemsnummer)
+    {
+        setFornavn(fornavn);
+        setEtternavn(etternavn);
+        setAdresse(adresse);
+        setMedlemsnummer(nestenr++); 
+        båt = null;
+    }
+    
     public Båteier(String fornavn, String etternavn, String adresse, int medlemsnummer, Båt b)
     {
-        if (/*ObjectInputStream er ferdig*/) //Benyttes dersom det hentes informasjon via OIS for å objektet Båteier.
-        {
-            setFornavn(fornavn);
-            setEtternavn(etternavn);
-            setAdresse(adresse);
-            setMedlemsnummer(medlemsnummer);
-            /* setBåtObjekt(båtobjekt); */
-        }
-        else // Benyttes dersom det er helt ny (ikke eksisterende) Båteier objekt som opprettes.
-        {
-            setFornavn(fornavn);
-            setEtternavn(etternavn);
-            setAdresse(adresse);
-            setMedlemsnummer(ois.readObject(/*siste båteier objekt i array*/)+1);
-            /* setBåtObjekt(båtobjekt); */
-        }
+        setFornavn(fornavn);
+        setEtternavn(etternavn);
+        setAdresse(adresse);
+        setMedlemsnummer(nestenr++); 
+        båt=b;
     }
 
     public String getFornavn()
