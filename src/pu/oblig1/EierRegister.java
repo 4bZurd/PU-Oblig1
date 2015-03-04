@@ -41,24 +41,42 @@ public class EierRegister
         løper.neste = ny;
     }
     
-    public Båteier finnEier( String fornavn, String etternavn, int nr )
+    public Båteier finnBåteier( String fornavn, String etternavn )
     {
+        Båteier løper = første;
         
+        while( løper != null )
+        {
+            if( løper.getFornavn().compareToIgnoreCase(fornavn) == 0 &&
+                    løper.getEtternavn().compareToIgnoreCase(etternavn) == 0)
+            {
+                return løper;
+            }
+            løper = løper.neste;
+        }
+        return null;
     }
     
-    public boolean slettEier()
+    public boolean slettBåteier( String fornavn, String etternavn )
     {
+        Båteier løper = første;
         
+        while( løper != null )
+        {
+            if( løper.neste.getFornavn().compareToIgnoreCase(fornavn) == 0 &&
+                    løper.neste.getEtternavn().compareToIgnoreCase(etternavn) == 0 )
+            {
+                løper.neste = løper.neste.neste;
+                return true;
+            }
+            løper = løper.neste;
+        }
+        return false;
     }
     
     public void finnBåt()
     {
         
-    }
-    
-    public Båteier finnBakerste()
-    {
-
     }
     
     public void skrivListe( JTextArea utskriftområde )

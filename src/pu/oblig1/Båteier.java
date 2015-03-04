@@ -91,7 +91,10 @@ public class Båteier
     {
         nestenr = n;
     }
-
-    // Konstruktør, initialiserer variablene 
-    // Bør konstruktøren koble en båt til en eier automatisk?
+    
+    @Override
+    public String toString()
+    {
+        
+    }
 }
