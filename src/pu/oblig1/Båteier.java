@@ -23,22 +23,22 @@ public class Båteier
     
     public Båteier(String fornavn, String etternavn, String adresse)
     {
-        setFornavn(fornavn);
-        setEtternavn(etternavn);
-        setAdresse(adresse);
-        setMedlemsnummer(nestenr++); 
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.adresse = adresse;
+        this.nestenr = nestenr++; 
         båt = null;
     }
     
     //Benyttes dersom man vet hvilken båt som eieren eier. 4 parametre.
     
-    public Båteier(String fornavn, String etternavn, String adresse, Båt b)
+    public Båteier(String fornavn, String etternavn, String adresse, Båt båt)
     {
-        setFornavn(fornavn);
-        setEtternavn(etternavn);
-        setAdresse(adresse);
-        setMedlemsnummer(nestenr++); 
-        båt=b;
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.adresse = adresse;
+        this.nestenr = nestenr++; 
+        this.båt = båt;
     }
 
     public String getFornavn()
