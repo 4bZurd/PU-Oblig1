@@ -204,13 +204,12 @@ public class BåtVindu extends JFrame
     {
         JFileChooser fil = new JFileChooser();
         fil.setCurrentDirectory( new File (".") );
-        filsti =  fil.getSelectedFile().getAbsolutePath();
         int svar =  fil.showOpenDialog( this );
         
         if( svar == JFileChooser.APPROVE_OPTION )
         {
             try( ObjectInputStream input = new ObjectInputStream( 
-                    new FileInputStream( filsti )) )
+                    new FileInputStream( filsti = fil.getSelectedFile().getAbsolutePath() )) )
             {
                 register = (EierRegister) input.readObject();
                 register.første.setNesteNr( input.readInt() );
