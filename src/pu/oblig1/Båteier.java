@@ -19,9 +19,9 @@ public class Båteier
     Båteier neste;
     private Båt båt;
     
-    // Benyttes dersom eierskap til båt er ukjent. 4 parametre i konstruktør.
+    // Benyttes dersom eierskap til båt er ukjent. 3 parametre i konstruktør.
     
-    public Båteier(String fornavn, String etternavn, String adresse, int medlemsnummer)
+    public Båteier(String fornavn, String etternavn, String adresse)
     {
         setFornavn(fornavn);
         setEtternavn(etternavn);
@@ -30,9 +30,9 @@ public class Båteier
         båt = null;
     }
     
-    //Benyttes dersom man vet hvilken båt som eieren eier. 5 parametre.
+    //Benyttes dersom man vet hvilken båt som eieren eier. 4 parametre.
     
-    public Båteier(String fornavn, String etternavn, String adresse, int medlemsnummer, Båt b)
+    public Båteier(String fornavn, String etternavn, String adresse, Båt b)
     {
         setFornavn(fornavn);
         setEtternavn(etternavn);
