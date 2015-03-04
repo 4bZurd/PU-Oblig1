@@ -29,6 +29,9 @@ public class EierRegister
         }
     }
     
+    /**
+     * trenger egentlig ikke denne metoden.
+     * 
     public void settInnBakerst( Båteier ny )
     {
         Båteier løper = første;
@@ -40,6 +43,10 @@ public class EierRegister
         
         løper.neste = ny;
     }
+     * @param fornavn
+     * @param etternavn
+     * @return 
+    */
     
     public Båteier finnBåteier( String fornavn, String etternavn )
     {
@@ -57,14 +64,16 @@ public class EierRegister
         return null;
     }
     
-    public boolean slettBåteier( String fornavn, String etternavn )
+    public boolean slettBåteier( String fornavn, String etternavn, int medlemsnr )
     {
         Båteier løper = første;
         
         while( løper != null )
         {
             if( løper.neste.getFornavn().compareToIgnoreCase(fornavn) == 0 &&
-                    løper.neste.getEtternavn().compareToIgnoreCase(etternavn) == 0 )
+                    løper.neste.getEtternavn().compareToIgnoreCase(etternavn) == 0 &&
+                    løper.neste.getMedlemsnummer() == medlemsnr &&
+                    løper.neste.getBåt() == null )
             {
                 løper.neste = løper.neste.neste;
                 return true;

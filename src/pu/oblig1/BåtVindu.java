@@ -48,6 +48,7 @@ public class BåtVindu extends JFrame
     private final JTextField fornavn;
     private final JTextField etternavn;
     private final JTextField adresse;
+    private final JTextField medlemsnummer;
     
     private String filsti;
     private EierRegister register;
@@ -87,6 +88,7 @@ public class BåtVindu extends JFrame
         fornavn =  new JTextField( 15 );
         etternavn = new JTextField( 15 );
         adresse = new JTextField( 20 );
+        medlemsnummer = new JTextField( 5 );
         
         
         // utskriftsområdets egenskaper
@@ -111,19 +113,21 @@ public class BåtVindu extends JFrame
         c.add( etternavn );
         c.add( new JLabel("Adresse: "));
         c.add( adresse );
-        c.add( new JLabel("Merke: ") );
+        c.add( new JLabel("Medlemmsnummer: "));
+        c.add( medlemsnummer );
+        c.add( new JLabel("Merke: "));
         c.add( merke );
-        c.add( new JLabel("Type: ") );
+        c.add( new JLabel("Type: "));
         c.add( type );
         c.add( new JLabel("Regnr: "));
         c.add( regnr );
-        c.add( new JLabel("Årsmod: ") );
+        c.add( new JLabel("Årsmod: "));
         c.add( årsmod );
         c.add( new JLabel("Lengde: "));
         c.add( lengde );
-        c.add( new JLabel("HK: ") );
+        c.add( new JLabel("HK: "));
         c.add( hk );
-        c.add( new JLabel("Skrogfarge: ") );
+        c.add( new JLabel("Skrogfarge: "));
         c.add( skrogfarge );
         c.add( utskrift );
         
@@ -136,16 +140,17 @@ public class BåtVindu extends JFrame
         skrivliste.addActionListener( this.lytter );
         velgfil.addActionListener( this.lytter );
     }
- /*   
+ 
     public void nyEier()
     {
         String fnavn = fornavn.getText();
         String enavn = etternavn.getText();
         String adr = adresse.getText();
-        Båteier ny = new Båteier( );                   // ikke ferdig
+        Båteier ny = new Båteier(fnavn, enavn, adr );                   // ikke ferdig
         register.settInn( ny );
+        utskrift.append("Du har registrert en ny eier. \n");
     }
-   */ 
+
     public void nyEierNyBåt()
     {
         String fnavn = fornavn.getText();
@@ -160,6 +165,7 @@ public class BåtVindu extends JFrame
         String sfarge = skrogfarge.getText();
         Båt båt = new Båt( reg, leng, hest, m, typ, sfarge );
         Båteier ny = new Båteier( fnavn, enavn, adr, båt );  
+        utskrift.append("Du har registrert en ny eier og tilhørende båt. \n");
     } 
     
     /**
@@ -168,9 +174,19 @@ public class BåtVindu extends JFrame
      * 
      */
     
-    public void fjernEier()
+    public void slettEier()
     {
-        
+        String fnavn = fornavn.getText();
+        String enavn = etternavn.getText();
+        int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
+        if(register.slettBåteier( fnavn, enavn, medlemsnr ))
+        {
+            utskrift.append("Du har fjernet eieren");
+        } 
+        else
+        {
+            utskrift.append("Det har oppstått en feil.");
+        }
     }
     
     /**
@@ -179,6 +195,7 @@ public class BåtVindu extends JFrame
     
     public void skrivUt()
     {
+        
         
     }
     
@@ -260,7 +277,7 @@ public class BåtVindu extends JFrame
         {
             if( e.getSource() == nyeier ) 
             {
-                nyEierNyBåt();
+                nyEier();
             }
             else if( e.getSource() == nyeiernybåt )
             {
@@ -268,7 +285,7 @@ public class BåtVindu extends JFrame
             }
             else if( e.getSource() == fjerneier )
             {
-                fjernEier();
+                slettEier();
             }
             else if( e.getSource() == skrivut )
             {
