@@ -93,6 +93,16 @@ public class Båteier
     @Override
     public String toString()
     {
-        
+        StringBuilder bygger = new StringBuilder();
+        bygger.append("Fornavn: ");
+        bygger.append(fornavn);
+        bygger.append("\nEtternavn: ");
+        bygger.append(etternavn);
+        bygger.append("\nAdresse: ");
+        bygger.append(adresse);
+        bygger.append("\nMedlemsnummer: ");
+        bygger.append(medlemsnummer);
+        bygger.append(båt.toString());
+        return bygger.toString();
     }
 }
