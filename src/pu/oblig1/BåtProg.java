@@ -9,6 +9,8 @@ package pu.oblig1;
  *
  * @author Odd
  */
-public class BåtProg {
+public class BåtProg 
+{
+    // githubtestoasngaodisngåasoding
     
 }
