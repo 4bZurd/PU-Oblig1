@@ -5,12 +5,31 @@
  */
 package pu.oblig1;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Odd
  */
-public class BåtProg 
+public class BåtProg
 {
-    // githubtestoasngaodisngåasoding
+    public static void main(String[] args)
+    {
+        EierRegister register = new EierRegister();
+        BåtVindu vindu = new BåtVindu(register);
+        vindu.velgFil();
+        vindu.setSize(1024, 768);
+        vindu.setVisible(true);
+        
+        vindu.addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent e)
+        {
+            vindu.skrivTilFil();
+            System.exit(0);
+        }
+        });
+    }
     
 }
