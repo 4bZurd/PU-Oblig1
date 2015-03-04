@@ -80,7 +80,7 @@ public class EierRegister
         
         while( løper != null )
         {
-            if( løper.getBåt().getRegnr().equals(regnr) )
+            if( løper.getBåt().getRegnr() == (regnr) )
             {
                 return løper.getBåt();
             }

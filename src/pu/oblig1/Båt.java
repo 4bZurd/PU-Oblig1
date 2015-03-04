@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Båt implements Serializable
 {
     
-    private int regnr;
+    private String regnr;
     private int lengde;
     private String merket;
     private String typen;
@@ -22,7 +22,7 @@ public class Båt implements Serializable
     private String fargen;
       
     //Klassens konstruktør
-    public Båt(int rnr, int fot, int hk, String merke, String type, String farge)
+    public Båt(String rnr, int fot, int hk, String merke, String type, String farge)
     {
         rnr = regnr;
         fot = lengde;
@@ -32,7 +32,7 @@ public class Båt implements Serializable
         farge = fargen;
     }
   
-    public int getRegnr() 
+    public String getRegnr() 
     {
         return regnr;
     }
