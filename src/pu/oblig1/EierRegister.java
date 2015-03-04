@@ -74,9 +74,19 @@ public class EierRegister
         return false;
     }
     
-    public void finnBåt()
+    public Båt finnBåt( int regnr)
     {
+        Båteier løper = første;
         
+        while( løper != null )
+        {
+            if( løper.getBåt().getRegnr().equals(regnr) )
+            {
+                return løper.getBåt();
+            }
+            løper = løper.neste;
+        }
+        return null;
     }
     
     public void skrivListe( JTextArea utskriftområde )
