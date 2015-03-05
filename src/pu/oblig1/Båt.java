@@ -20,16 +20,18 @@ public class Båt implements Serializable
     private String typen;
     private int hkr;
     private String fargen;
+    private int alder;
       
     //Klassens konstruktør
-    public Båt(String rnr, int fot, int hk, String merke, String type, String farge)
+    public Båt(String rnr, int fot, int hk, String merke, String type, String farge, int år)
     {
-        rnr = regnr;
-        fot = lengde;
-        hk = hkr;
-        merke = merket;
-        type = typen;
-        farge = fargen;
+        regnr = rnr;
+        lengde = fot;
+        hkr = hk;
+        merket = merke;
+        typen = type;
+        fargen = farge;
+        alder = år;
     }
   
     public String getRegnr() 
@@ -43,8 +45,8 @@ public class Båt implements Serializable
     {
         String ut = "\nRegistreringsnummer: " + regnr + "\nLengde: " + lengde +
                        "\nMerke: " + merket + "\nType: " + typen + 
-                       "\nHestekrefter:" + hkr + "\nFarge:" + fargen;
+                       "\nHestekrefter:" + hkr + "\nFarge:" + fargen + "\nÅr: "
+                + alder;
         return ut;
     }
 }
-
