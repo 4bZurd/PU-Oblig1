@@ -191,14 +191,6 @@ public class BåtVindu extends JFrame
         }
     }
     
-    public void finnEier()
-    {
-        String fnavn = fornavn.getText();
-        String enavn = etternavn.getText();
-        int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
-        Båteier eier = register.finnBåteier(fnavn, enavn );
-        utskrift.append(eier.toString());
-    }
     
     /**
      * skriver ut info for en gitt båteier.
@@ -206,8 +198,12 @@ public class BåtVindu extends JFrame
     
     public void skrivUt()
     {
-        
-        
+        String fnavn = fornavn.getText();
+        String enavn = etternavn.getText();
+        int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
+        Båteier eier = register.finnBåteier(fnavn, enavn, medlemsnr  );
+        utskrift.append(eier.toString());
+   
     }
     
     /**
@@ -314,10 +310,6 @@ public class BåtVindu extends JFrame
             else if( e.getSource() == velgfil )
             {
                 velgFil();
-            }
-            else if( e.getSource() == finneier )
-            {
-                finnEier();
             }
         }
     }
