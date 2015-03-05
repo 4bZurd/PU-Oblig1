@@ -197,6 +197,7 @@ public class BåtVindu extends JFrame
         Båteier båteier = register.finnBåteier( medlemsnr );
         Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
         båteier.setBåt( ny );
+        utskrift.append( båteier.toString() );
 
     }
     
@@ -224,7 +225,6 @@ public class BåtVindu extends JFrame
         int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
         Båteier eier = register.finnBåteier( medlemsnr  );
         utskrift.append( eier.toString() );
-   
     }
     
     /**
