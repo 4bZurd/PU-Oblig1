@@ -29,26 +29,7 @@ public class EierRegister implements Serializable
             første = ny;
         }
     }
-    
-    /**
-     * trenger egentlig ikke denne metoden.
-     * 
-    public void settInnBakerst( Båteier ny )
-    {
-        Båteier løper = første;
-        
-        while( løper.neste != null )
-        {
-            løper = løper.neste;
-        }
-        
-        løper.neste = ny;
-    }
-     * @param fornavn
-     * @param etternavn
-     * @param nr
-     * @return 
-    */
+
     
     public Båteier finnBåteier( int nr )
     {
