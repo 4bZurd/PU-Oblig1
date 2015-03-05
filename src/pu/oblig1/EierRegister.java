@@ -58,7 +58,7 @@ public class EierRegister implements Serializable
         {
             if( løper.getFornavn().compareToIgnoreCase(fornavn) == 0 &&
                     løper.getEtternavn().compareToIgnoreCase(etternavn) == 0 &&
-                    løper.neste.getMedlemsnummer() == nr )
+                    løper.getMedlemsnummer() == nr )
             {
                 return løper;
             }
