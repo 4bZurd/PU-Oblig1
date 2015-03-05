@@ -67,7 +67,7 @@ public class EierRegister implements Serializable
         return null;
     }
     
-    public boolean slettBåteier( String fornavn, String etternavn, int medlemsnr )
+    public boolean slettBåteier( int medlemsnr )
     {
         Båteier løper = første;
         
