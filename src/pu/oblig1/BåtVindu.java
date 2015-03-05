@@ -160,14 +160,15 @@ public class BåtVindu extends JFrame
         String adr = adresse.getText();
         String m = merke.getText();
         String typ = type.getText();
-        String reg = type.getText();
+        String reg = regnr.getText();
         String år = årsmod.getText();
-        int leng = Integer.parseInt(lengde.getText());
-        int hest = Integer.parseInt(hk.getText());
-        String sfarge = skrogfarge.getText();
-        Båt båt = new Båt( reg, leng, hest, m, typ, sfarge );
-        Båteier ny = new Båteier( fnavn, enavn, adr, båt );  
-        register.settInn(ny);
+        int leng = Integer.parseInt( lengde.getText());
+        int hest = Integer.parseInt( hk.getText());
+        String sfarge = skrogfarge.getText();     
+        Båt nybåt = new Båt( reg, leng, hest, m , typ, sfarge. år );
+        Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );  
+        
+        register.settInn( ny );
         utskrift.append("Du har registrert en ny eier og tilhørende båt. \n");
     } 
     
