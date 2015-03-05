@@ -157,10 +157,16 @@ public class BåtVindu extends JFrame
         String fnavn = fornavn.getText();
         String enavn = etternavn.getText();
         String adr = adresse.getText();
-        Båteier ny = new Båteier(fnavn, enavn, adr );                   
-        register.settInn( ny );
-        utskrift.append("Du har registrert en ny eier: \n" + ny.toString());
-        slettFelt();
+        if( fnavn.length() == 0 || enavn.length() == 0 || adr.length() == 0 )
+        {
+            utskrift.append("Du har glemt å fylle ut alle nødvendige felt. \n");
+        } else {
+            
+            Båteier ny = new Båteier(fnavn, enavn, adr );                   
+            register.settInn( ny );
+            utskrift.append("Du har registrert en ny eier: \n" + ny.toString());
+            slettFelt();    
+        }
     }
 
     public void nyEierNyBåt()
@@ -188,7 +194,7 @@ public class BåtVindu extends JFrame
         }
         catch( NumberFormatException e )
         {
-            utskrift.append("Feil format for tall, se om du har tastet riktig. ");
+            utskrift.append("Feil format for tall, se om du har tastet riktig. \n");
         }
     } 
     
@@ -219,7 +225,7 @@ public class BåtVindu extends JFrame
         }
         catch( NumberFormatException e )
         {
-            utskrift.append("Feil format for tall, se om du har tastet riktig. ");
+            utskrift.append("Feil format for tall, se om du har tastet riktig. \n");
         }
 
     }
@@ -230,12 +236,12 @@ public class BåtVindu extends JFrame
         
         if( register.slettBåteier( medlemsnr ))
         {
-            utskrift.append("Du har fjernet eieren");
+            utskrift.append("Du har fjernet eieren \n");
             slettFelt();
         } 
         else
         {
-            utskrift.append("Det har oppstått en feil.");
+            utskrift.append("Det har oppstått en feil. \n");
         }
     }
      
