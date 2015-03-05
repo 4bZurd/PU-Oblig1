@@ -196,7 +196,7 @@ public class BåtVindu extends JFrame
      * skriver ut info for en gitt båteier.
      */
     
-    public void skrivUt()
+    public void finnEier()
     {
         String fnavn = fornavn.getText();
         String enavn = etternavn.getText();
@@ -297,7 +297,7 @@ public class BåtVindu extends JFrame
             }
             else if( e.getSource() == skrivut )
             {
-                skrivUt();
+                finnEier();
             }
             else if( e.getSource() == skifteier )
             {
