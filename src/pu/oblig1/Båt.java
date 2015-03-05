@@ -14,13 +14,13 @@ import java.io.Serializable;
 public class Båt implements Serializable
 {
     
-    private String regnr;
-    private int lengde;
-    private String merket;
-    private String typen;
-    private int hkr;
-    private String fargen;
-    private int alder;
+    private final String regnr;
+    private final int lengde;
+    private final String merket;
+    private final String typen;
+    private final int hkr;
+    private final String fargen;
+    private final int alder;
       
     //Klassens konstruktør
     public Båt(String rnr, int fot, int hk, String merke, String type, String farge, int år)
