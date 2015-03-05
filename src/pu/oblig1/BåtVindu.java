@@ -111,6 +111,7 @@ public class BåtVindu extends JFrame
         c.add( skifteier );
         c.add( skrivliste );
         c.add( velgfil );
+        c.add( finneier );
         c.add( new JLabel("Fornavn: ") );
         c.add( fornavn );
         c.add( new JLabel("Etternavn: "));
@@ -184,7 +185,7 @@ public class BåtVindu extends JFrame
     
     public void slettEier()
     {
-        int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
+        int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
         if( register.slettBåteier( medlemsnr ))
         {
             utskrift.append("Du har fjernet eieren");
@@ -204,7 +205,7 @@ public class BåtVindu extends JFrame
     {
         String fnavn = fornavn.getText();
         String enavn = etternavn.getText();
-        int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
+        int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
         Båteier eier = register.finnBåteier( medlemsnr  );
         utskrift.append( eier.toString() );
    
