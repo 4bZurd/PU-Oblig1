@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -96,8 +97,9 @@ public class BåtVindu extends JFrame
         
         
         // utskriftsområdets egenskaper
-        utskrift = new JTextArea( 100, 100 );
+        utskrift = new JTextArea( 50, 100 );
         utskrift.setEditable( false );
+        JScrollPane scroll = new JScrollPane( utskrift );
         
         
         // legger elementene i vinduet fra venstre mot høyre.
@@ -136,7 +138,8 @@ public class BåtVindu extends JFrame
         c.add( hk );
         c.add( new JLabel("Skrogfarge: "));
         c.add( skrogfarge );
-        c.add( utskrift );
+        c.add( scroll );
+
         
         //knytter ActionListener til knappene 
         nyeier.addActionListener( this.lytter );
