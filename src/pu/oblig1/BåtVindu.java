@@ -174,10 +174,10 @@ public class BåtVindu extends JFrame
         int år = Integer.parseInt( årsmod.getText() );
         int leng = Integer.parseInt( lengde.getText());
         int hest = Integer.parseInt( hk.getText());
-        String sfarge = skrogfarge.getText();     
-        Båt nybåt = new Båt( reg, leng, hest, m , typ, sfarge, år );
-        Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );  
+        String sfarge = skrogfarge.getText();
         
+        Båt nybåt = new Båt( reg, leng, hest, m , typ, sfarge, år );
+        Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );
         register.settInn( ny );
         utskrift.append("Du har registrert en ny eier og tilhørende båt. \n"
                          + ny.toString() );
@@ -200,6 +200,7 @@ public class BåtVindu extends JFrame
         int hest = Integer.parseInt( hk.getText());
         String sfarge = skrogfarge.getText();
         int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
+        
         Båteier båteier = register.finnEier( medlemsnr );
         Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
         båteier.setBåt( ny );
