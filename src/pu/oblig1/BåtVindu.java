@@ -165,23 +165,31 @@ public class BåtVindu extends JFrame
 
     public void nyEierNyBåt()
     {
-        String fnavn = fornavn.getText();
-        String enavn = etternavn.getText();
-        String adr = adresse.getText();
-        String m = merke.getText();
-        String typ = type.getText();
-        String reg = regnr.getText();
-        int år = Integer.parseInt( årsmod.getText() );
-        int leng = Integer.parseInt( lengde.getText());
-        int hest = Integer.parseInt( hk.getText());
-        String sfarge = skrogfarge.getText();
+        try
+        {
+            String fnavn = fornavn.getText();
+            String enavn = etternavn.getText();
+            String adr = adresse.getText();
+            String m = merke.getText();
+            String typ = type.getText();
+            String reg = regnr.getText();
+            int år = Integer.parseInt( årsmod.getText() );
+            int leng = Integer.parseInt( lengde.getText());
+            int hest = Integer.parseInt( hk.getText());
+            String sfarge = skrogfarge.getText();
         
-        Båt nybåt = new Båt( reg, leng, hest, m , typ, sfarge, år );
-        Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );
-        register.settInn( ny );
-        utskrift.append("Du har registrert en ny eier og tilhørende båt. \n"
-                         + ny.toString() );
-        slettFelt();
+            Båt nybåt = new Båt( reg, leng, hest, m , typ, sfarge, år );
+            Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );
+            register.settInn( ny );
+            utskrift.append("Du har registrert en ny eier og tilhørende båt. \n"
+                             + ny.toString() );
+            slettFelt();
+            
+        }
+        catch( NumberFormatException e )
+        {
+            utskrift.append("Feil format for tall, se om du har tastet riktig. ");
+        }
     } 
     
     /**
@@ -192,20 +200,27 @@ public class BåtVindu extends JFrame
     
     public void registrerBåt()
     {
-        String m = merke.getText();
-        String typ = type.getText();
-        String reg = regnr.getText();
-        int år = Integer.parseInt( årsmod.getText() );
-        int leng = Integer.parseInt( lengde.getText());
-        int hest = Integer.parseInt( hk.getText());
-        String sfarge = skrogfarge.getText();
-        int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
+        try
+        {
+            String m = merke.getText();
+            String typ = type.getText();
+            String reg = regnr.getText();
+            int år = Integer.parseInt( årsmod.getText() );
+            int leng = Integer.parseInt( lengde.getText());
+            int hest = Integer.parseInt( hk.getText());
+            String sfarge = skrogfarge.getText();
+            int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
         
-        Båteier båteier = register.finnEier( medlemsnr );
-        Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
-        båteier.setBåt( ny );
-        utskrift.append( båteier.toString() );
-        slettFelt();
+            Båteier båteier = register.finnEier( medlemsnr );
+            Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
+            båteier.setBåt( ny );
+            utskrift.append( båteier.toString() );
+            slettFelt();
+        }
+        catch( NumberFormatException e )
+        {
+            utskrift.append("Feil format for tall, se om du har tastet riktig. ");
+        }
 
     }
     
