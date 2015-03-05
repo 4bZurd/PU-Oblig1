@@ -212,7 +212,17 @@ public class BåtVindu extends JFrame
     
     public void skiftEier()
     {
-        
+        int medlemsnr1 = Integer.parseInt( medlemsnummer1.getText() );
+        int medlemsnr2 = Integer.parseInt( medlemsnummer2.getText() );
+        int båtreg = Integer.parseInt( regnr.getText() );
+        Båteier eier1 = register.finnBåteier( medlemsnr1 );
+        Båteier eier2 = register.finnBåteier( medlemsnr2 );
+        String eier2inf = eier2.toString();
+        Båt båt1 = eier1.getBåt();
+        eier1.setBåt(null);
+        eier2.setBåt(båt1);
+        utskrift.append("Båt med registeringsnummer " + båtreg + 
+                " er nå registert på " + eier2inf);
     }
     
     /**
