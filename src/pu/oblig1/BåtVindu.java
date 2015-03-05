@@ -154,9 +154,10 @@ public class BåtVindu extends JFrame
         String fnavn = fornavn.getText();
         String enavn = etternavn.getText();
         String adr = adresse.getText();
-        Båteier ny = new Båteier(fnavn, enavn, adr );                   // ikke ferdig
+        Båteier ny = new Båteier(fnavn, enavn, adr );                   
         register.settInn( ny );
         utskrift.append("Du har registrert en ny eier: \n" + ny.toString());
+        slettFelt();
     }
 
     public void nyEierNyBåt()
@@ -177,6 +178,7 @@ public class BåtVindu extends JFrame
         register.settInn( ny );
         utskrift.append("Du har registrert en ny eier og tilhørende båt. \n"
                          + ny.toString() );
+        slettFelt();
     } 
     
     /**
@@ -199,6 +201,7 @@ public class BåtVindu extends JFrame
         Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
         båteier.setBåt( ny );
         utskrift.append( båteier.toString() );
+        slettFelt();
 
     }
     
@@ -209,14 +212,14 @@ public class BåtVindu extends JFrame
         if( register.slettBåteier( medlemsnr ))
         {
             utskrift.append("Du har fjernet eieren");
+            slettFelt();
         } 
         else
         {
             utskrift.append("Det har oppstått en feil.");
         }
     }
-    
-    
+     
     /**
      * skriver ut info for en gitt båteier.
      */
@@ -226,12 +229,14 @@ public class BåtVindu extends JFrame
         int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
         Båteier eier = register.finnEier( medlemsnr  );
         utskrift.append( eier.toString() );
+        slettFelt();
     }
     
     public void finnBåteier()
     {
         Båteier eier = register.finnBåtEier( regnr.getText() );
         utskrift.append( eier.toString() );
+        slettFelt();
     }
     
     /**
@@ -250,6 +255,7 @@ public class BåtVindu extends JFrame
         eier2.setBåt(båt1);
         utskrift.append("Båt med registeringsnummer " + båtreg + 
                 " er nå registert på " + eier2.toString() );
+        slettFelt();
     }
     
     /**
@@ -259,6 +265,22 @@ public class BåtVindu extends JFrame
     public void skrivListe()
     {
         register.skrivListe(utskrift);
+    }
+    
+    public void slettFelt()
+    {
+        merke.setText("");
+        type.setText("");
+        regnr.setText("");
+        årsmod.setText("");
+        lengde.setText("");
+        hk.setText("");
+        skrogfarge.setText("");
+        fornavn.setText("");
+        etternavn.setText("");
+        adresse.setText("");
+        medlemsnummer1.setText("");
+        medlemsnummer2.setText("");      
     }
 
     public void velgFil()
