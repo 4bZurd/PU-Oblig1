@@ -46,17 +46,19 @@ public class EierRegister implements Serializable
     }
      * @param fornavn
      * @param etternavn
+     * @param nr
      * @return 
     */
     
-    public Båteier finnBåteier( String fornavn, String etternavn )
+    public Båteier finnBåteier( String fornavn, String etternavn, int nr )
     {
         Båteier løper = første;
         
         while( løper != null )
         {
             if( løper.getFornavn().compareToIgnoreCase(fornavn) == 0 &&
-                    løper.getEtternavn().compareToIgnoreCase(etternavn) == 0)
+                    løper.getEtternavn().compareToIgnoreCase(etternavn) == 0 &&
+                    løper.neste.getMedlemsnummer() == nr )
             {
                 return løper;
             }
