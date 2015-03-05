@@ -72,7 +72,7 @@ public class BåtVindu extends JFrame
         nyeier = new JButton("Ny Eier");
         nyeiernybåt = new JButton("Ny Eier/Båt");
         fjerneier = new JButton("Fjern Eier");
-        skrivut = new JButton("Skriv ut");
+        skrivut = new JButton("Finn");
         skifteier = new JButton("Skift Eier");
         skrivliste = new JButton("Skriv ut Liste");
         velgfil = new JButton("Velg Fil");
