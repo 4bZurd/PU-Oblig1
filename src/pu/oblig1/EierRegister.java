@@ -71,6 +71,11 @@ public class EierRegister implements Serializable
         
         while( løper != null )
         {
+            if( løper.getMedlemsnummer() == medlemsnr && løper.getBåt() == null )
+            {
+                løper = løper.neste;
+                return true;
+            }
             if( løper.neste.getMedlemsnummer() == medlemsnr && løper.neste.getBåt() == null )
             {
                 løper.neste = løper.neste.neste;
