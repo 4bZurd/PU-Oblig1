@@ -113,11 +113,14 @@ public class Båteier implements Serializable
         bygger.append(etternavn);
         bygger.append("\nAdresse: ");
         bygger.append(adresse);
-        bygger.append("\nMedlemsnummer: \n");
+        bygger.append("\nMedlemsnummer: ");
         bygger.append(medlemsnummer);
         
         if( båt != null)
+        {
             bygger.append(båt.toString());
+            bygger.append("\n\n");
+        }
         
         return bygger.toString();
     }
