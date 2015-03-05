@@ -50,15 +50,13 @@ public class EierRegister implements Serializable
      * @return 
     */
     
-    public Båteier finnBåteier( String fornavn, String etternavn, int nr )
+    public Båteier finnBåteier( int nr )
     {
         Båteier løper = første;
         
         while( løper != null )
         {
-            if( løper.getFornavn().compareToIgnoreCase(fornavn) == 0 &&
-                    løper.getEtternavn().compareToIgnoreCase(etternavn) == 0 &&
-                    løper.getMedlemsnummer() == nr )
+            if( løper.getMedlemsnummer() == nr )
             {
                 return løper;
             }
