@@ -37,6 +37,7 @@ public class BåtVindu extends JFrame
     private final JButton skifteier;
     private final JButton skrivliste;
     private final JButton velgfil;
+    private final JButton finneier;
     
     private final JTextField merke;
     private final JTextField type;
@@ -71,10 +72,11 @@ public class BåtVindu extends JFrame
         nyeier = new JButton("Ny Eier");
         nyeiernybåt = new JButton("Ny Eier/Båt");
         fjerneier = new JButton("Fjern Eier");
-        skrivut = new JButton("Finn");
+        skrivut = new JButton("Skriv ut");
         skifteier = new JButton("Skift Eier");
         skrivliste = new JButton("Skriv ut Liste");
         velgfil = new JButton("Velg Fil");
+        finneier = new JButton("Finn");
         
         
         //Opretter tekstfielt for registrering av båt/eier     
@@ -187,6 +189,15 @@ public class BåtVindu extends JFrame
         {
             utskrift.append("Det har oppstått en feil.");
         }
+    }
+    
+    public void finnEier()
+    {
+        String fnavn = fornavn.getText();
+        String enavn = etternavn.getText();
+        int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
+        Båteier eier = register.finnBåteier(fnavn, enavn );
+        utskrift.append(eier.toString());
     }
     
     /**
@@ -303,6 +314,10 @@ public class BåtVindu extends JFrame
             else if( e.getSource() == velgfil )
             {
                 velgFil();
+            }
+            else if( e.getSource() == finneier )
+            {
+                finnEier();
             }
         }
     }
