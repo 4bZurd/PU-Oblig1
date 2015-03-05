@@ -183,6 +183,22 @@ public class BåtVindu extends JFrame
      * 
      */
     
+    public void registrerBåt()
+    {
+        String m = merke.getText();
+        String typ = type.getText();
+        String reg = regnr.getText();
+        int år = Integer.parseInt( årsmod.getText() );
+        int leng = Integer.parseInt( lengde.getText());
+        int hest = Integer.parseInt( hk.getText());
+        String sfarge = skrogfarge.getText();
+        int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
+        Båteier båteier = register.finnBåteier( medlemsnr );
+        Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
+        båteier.setBåt( ny );
+
+    }
+    
     public void slettEier()
     {
         int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
