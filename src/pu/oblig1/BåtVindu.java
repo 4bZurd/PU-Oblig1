@@ -178,10 +178,8 @@ public class BåtVindu extends JFrame
     
     public void slettEier()
     {
-        String fnavn = fornavn.getText();
-        String enavn = etternavn.getText();
         int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
-        if( register.slettBåteier( fnavn, enavn, medlemsnr ))
+        if( register.slettBåteier( medlemsnr ));
         {
             utskrift.append("Du har fjernet eieren");
         } 
