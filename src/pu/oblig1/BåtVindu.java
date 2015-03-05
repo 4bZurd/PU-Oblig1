@@ -179,7 +179,7 @@ public class BåtVindu extends JFrame
     public void slettEier()
     {
         int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
-        if( register.slettBåteier( medlemsnr ));
+        if( register.slettBåteier( medlemsnr ))
         {
             utskrift.append("Du har fjernet eieren");
         } 
