@@ -31,7 +31,7 @@ public class EierRegister implements Serializable
     }
 
     
-    public Båteier finnBåteier( int nr )
+    public Båteier finnEier( int nr )
     {
         Båteier løper = første;
         
@@ -69,7 +69,7 @@ public class EierRegister implements Serializable
         return false;
     }
     
-    public Båt finnBåt( String regnr)
+    public Båteier finnBåtEier( String regnr)
     {
         Båteier løper = første;
         
@@ -77,7 +77,7 @@ public class EierRegister implements Serializable
         {
             if( løper.getBåt().getRegnr().equals(regnr) )
             {
-                return løper.getBåt();
+                return løper;
             }
             løper = løper.neste;
         }

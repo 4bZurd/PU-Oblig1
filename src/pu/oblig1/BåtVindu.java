@@ -77,7 +77,7 @@ public class BåtVindu extends JFrame
         skifteier = new JButton("Skift Eier");
         skrivliste = new JButton("Skriv ut Liste");
         velgfil = new JButton("Velg Fil");
-        finneier = new JButton("Finn");
+        finneier = new JButton("Finn Eier");
         
         
         //Opretter tekstfielt for registrering av båt/eier     
@@ -146,6 +146,7 @@ public class BåtVindu extends JFrame
         skifteier.addActionListener( this.lytter );
         skrivliste.addActionListener( this.lytter );
         velgfil.addActionListener( this.lytter );
+        finneier.addActionListener( this.lytter );
     }
  
     public void nyEier()
@@ -194,7 +195,7 @@ public class BåtVindu extends JFrame
         int hest = Integer.parseInt( hk.getText());
         String sfarge = skrogfarge.getText();
         int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
-        Båteier båteier = register.finnBåteier( medlemsnr );
+        Båteier båteier = register.finnEier( medlemsnr );
         Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
         båteier.setBåt( ny );
         utskrift.append( båteier.toString() );
@@ -223,7 +224,13 @@ public class BåtVindu extends JFrame
     public void finnEier()
     {
         int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
-        Båteier eier = register.finnBåteier( medlemsnr  );
+        Båteier eier = register.finnEier( medlemsnr  );
+        utskrift.append( eier.toString() );
+    }
+    
+    public void finnBåteier()
+    {
+        Båteier eier = register.finnBåtEier( regnr.getText() );
         utskrift.append( eier.toString() );
     }
     
@@ -236,8 +243,8 @@ public class BåtVindu extends JFrame
         int medlemsnr1 = Integer.parseInt( medlemsnummer1.getText() );
         int medlemsnr2 = Integer.parseInt( medlemsnummer2.getText() );
         int båtreg = Integer.parseInt( regnr.getText() );
-        Båteier eier1 = register.finnBåteier( medlemsnr1 );
-        Båteier eier2 = register.finnBåteier( medlemsnr2 );
+        Båteier eier1 = register.finnEier( medlemsnr1 );
+        Båteier eier2 = register.finnEier( medlemsnr2 );
         Båt båt1 = eier1.getBåt();
         eier1.setBåt(null);
         eier2.setBåt(båt1);
@@ -340,6 +347,10 @@ public class BåtVindu extends JFrame
             else if( e.getSource() == velgfil )
             {
                 velgFil();
+            }
+            else if( e.getSource() == finneier)
+            {
+                finnBåteier();
             }
         }
     }
