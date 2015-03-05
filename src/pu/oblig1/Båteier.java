@@ -106,6 +106,7 @@ public class Båteier implements Serializable
     @Override
     public String toString()
     {
+        
         StringBuilder bygger = new StringBuilder();
         bygger.append("\nFornavn: ");
         bygger.append(fornavn);
