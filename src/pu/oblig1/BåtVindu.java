@@ -49,7 +49,8 @@ public class BåtVindu extends JFrame
     private final JTextField fornavn;
     private final JTextField etternavn;
     private final JTextField adresse;
-    private final JTextField medlemsnummer;
+    private final JTextField medlemsnummer1;
+    private final JTextField medlemsnummer2;
     
     private String filsti;
     private EierRegister register;
@@ -90,7 +91,8 @@ public class BåtVindu extends JFrame
         fornavn =  new JTextField( 15 );
         etternavn = new JTextField( 15 );
         adresse = new JTextField( 20 );
-        medlemsnummer = new JTextField( 5 );
+        medlemsnummer1 = new JTextField( 5 );
+        medlemsnummer2 = new JTextField( 5 );
         
         
         // utskriftsområdets egenskaper
@@ -115,8 +117,10 @@ public class BåtVindu extends JFrame
         c.add( etternavn );
         c.add( new JLabel("Adresse: "));
         c.add( adresse );
-        c.add( new JLabel("Medlemmsnummer: "));
-        c.add( medlemsnummer );
+        c.add( new JLabel("Medlemmsnummer1: "));
+        c.add( medlemsnummer1 );
+        c.add( new JLabel("Medlemmsnummer2: "));
+        c.add( medlemsnummer2 );
         c.add( new JLabel("Merke: "));
         c.add( merke );
         c.add( new JLabel("Type: "));
