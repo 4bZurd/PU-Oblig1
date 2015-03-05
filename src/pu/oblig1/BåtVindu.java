@@ -167,6 +167,7 @@ public class BåtVindu extends JFrame
         String sfarge = skrogfarge.getText();
         Båt båt = new Båt( reg, leng, hest, m, typ, sfarge );
         Båteier ny = new Båteier( fnavn, enavn, adr, båt );  
+        register.settInn(ny);
         utskrift.append("Du har registrert en ny eier og tilhørende båt. \n");
     } 
     
@@ -219,7 +220,7 @@ public class BåtVindu extends JFrame
     
     public void skrivListe()
     {
-        register.skrivListe( utskrift );
+        register.skrivListe(utskrift);
     }
 
     public void velgFil()
