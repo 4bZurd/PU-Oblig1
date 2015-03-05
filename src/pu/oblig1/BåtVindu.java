@@ -202,7 +202,11 @@ public class BåtVindu extends JFrame
         String enavn = etternavn.getText();
         int medlemsnr = Integer.parseInt( medlemsnummer.getText() );
         Båteier eier = register.finnBåteier(fnavn, enavn, medlemsnr  );
-        utskrift.append( eier.toString() );
+        if( eier == null)
+            System.out.print("eier er null");
+        else
+            System.out.print(eier.toString());
+        //utskrift.append( eier.toString() );
    
     }
     
