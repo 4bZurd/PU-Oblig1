@@ -38,6 +38,7 @@ public class Båt implements Serializable
     }
   
     //Klassens toStringmetode, skriver ut informasjon om båten
+    @Override
     public String toString()
     {
         String ut = "\nRegistreringsnummer: " + regnr + "\nLengde: " + lengde +
