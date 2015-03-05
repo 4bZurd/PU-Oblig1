@@ -157,6 +157,7 @@ public class BåtVindu extends JFrame
         String fnavn = fornavn.getText();
         String enavn = etternavn.getText();
         String adr = adresse.getText();
+        
         if( fnavn.length() == 0 || enavn.length() == 0 || adr.length() == 0 )
         {
             utskrift.append("Du har glemt å fylle ut alle nødvendige felt. \n");
