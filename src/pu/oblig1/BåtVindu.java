@@ -155,7 +155,7 @@ public class BåtVindu extends JFrame
         String adr = adresse.getText();
         Båteier ny = new Båteier(fnavn, enavn, adr );                   // ikke ferdig
         register.settInn( ny );
-        utskrift.append("Du har registrert en ny eier. \n");
+        utskrift.append("Du har registrert en ny eier: \n" + ny.toString());
     }
 
     public void nyEierNyBåt()
@@ -174,7 +174,8 @@ public class BåtVindu extends JFrame
         Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );  
         
         register.settInn( ny );
-        utskrift.append("Du har registrert en ny eier og tilhørende båt. \n");
+        utskrift.append("Du har registrert en ny eier og tilhørende båt. \n"
+                         + ny.toString() );
     } 
     
     /**
@@ -202,6 +203,7 @@ public class BåtVindu extends JFrame
     public void slettEier()
     {
         int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
+        
         if( register.slettBåteier( medlemsnr ))
         {
             utskrift.append("Du har fjernet eieren");
