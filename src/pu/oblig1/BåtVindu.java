@@ -188,7 +188,7 @@ public class BåtVindu extends JFrame
             Båt nybåt = new Båt( reg, leng, hest, m , typ, sfarge, år );
             Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );
             register.settInn( ny );
-            utskrift.append("Du har registrert en ny eier og tilhørende båt. \n"
+            utskrift.append("Du har registrert: \n"
                              + ny.toString() );
             slettFelt();
             
@@ -233,16 +233,18 @@ public class BåtVindu extends JFrame
     
     public void slettEier()
     {
-        int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
-        
-        if( register.slettBåteier( medlemsnr ))
+        try
         {
-            utskrift.append("Du har fjernet eieren \n");
-            slettFelt();
-        } 
-        else
+            int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
+            if( register.slettBåteier( medlemsnr ))
+            {
+                utskrift.append("Du har fjernet eieren \n");
+                slettFelt();
+            }     
+        }
+        catch( NumberFormatException e )
         {
-            utskrift.append("Det har oppstått en feil. \n");
+            
         }
     }
      
@@ -252,17 +254,31 @@ public class BåtVindu extends JFrame
     
     public void finnEier()
     {
-        int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
-        Båteier eier = register.finnEier( medlemsnr  );
-        utskrift.append( eier.toString() );
-        slettFelt();
+        try
+        {
+            int medlemsnr = Integer.parseInt( medlemsnummer1.getText() ); 
+            Båteier eier = register.finnEier( medlemsnr  );
+            utskrift.append( eier.toString() );
+            slettFelt();
+        }
+        catch( NumberFormatException e )
+        {
+            utskrift.append("Feil format: medlemsnummer. ");
+        }
     }
     
     public void finnBåteier()
     {
-        Båteier eier = register.finnBåtEier( regnr.getText() );
-        utskrift.append( eier.toString() );
-        slettFelt();
+        try
+        {
+            Båteier eier = register.finnBåtEier( regnr.getText() );
+            utskrift.append( eier.toString() );
+            slettFelt();
+        }
+        catch( NumberFormatException e )
+        {
+            utskrift.append("Regnummer må være ett tall. ");
+        }
     }
     
     /**
@@ -330,7 +346,7 @@ public class BåtVindu extends JFrame
             }
             catch( FileNotFoundException e )
             {
-                // passende feilhåndtering
+                utskrift.append("Filen er ikke funnet. ");
             }
             catch( IOException e )
             {
@@ -342,7 +358,7 @@ public class BåtVindu extends JFrame
     /**
      * Skriver register objektet til fil samt alle addresser og objekter 
      * som hører til register. Deretter lagrer den medlemmsnummerets hjelpevariabel
-     * til fil.
+     * til fil. 
      */
     
     public void skrivTilFil()
@@ -359,7 +375,7 @@ public class BåtVindu extends JFrame
         }
         catch( IOException e )
         {
-            // filslutt
+            // passende feilhåndtering
         }
     }
 
