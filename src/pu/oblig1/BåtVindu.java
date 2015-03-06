@@ -244,7 +244,7 @@ public class BåtVindu extends JFrame
         }
         catch( NumberFormatException e )
         {
-            
+            utskrift.append("Du har skrevet inn en feil. ");
         }
     }
      
