@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pu.oblig1;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package oblig;
 
 import java.io.Serializable;
 import javax.swing.JTextArea;
@@ -54,12 +59,13 @@ public class EierRegister implements Serializable
         {
             if(første == null)
                 return false;
-            if( første.getMedlemsnummer() == medlemsnr && første.getBåt() == null )
+            if( første.getMedlemsnummer() == medlemsnr && første.getBåtliste().erTom() )
             {
                 første = første.neste;
                 return true;
             }
-            if( løper.neste.getMedlemsnummer() == medlemsnr && løper.neste.getBåt() == null )
+            if( løper.neste != null && løper.neste.getMedlemsnummer() == medlemsnr
+                    && første.neste.getBåtliste().erTom() )
             {
                 løper.neste = løper.neste.neste;
                 return true;
@@ -75,9 +81,12 @@ public class EierRegister implements Serializable
         
         while( løper != null )
         {
-            if( løper.getBåt().getRegnr().equals(regnr) )
+            if( løper.getBåtliste() != null)
             {
-                return løper;
+                if( løper.getBåtliste().finnBåt(regnr) != null )
+                {
+                    return løper;
+                }
             }
             løper = løper.neste;
         }
