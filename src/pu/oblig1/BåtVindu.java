@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pu.oblig1;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package oblig;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,13 +38,15 @@ public class BåtVindu extends JFrame
 {
     private final JTextArea utskrift;
     private final JButton nyeier;
-    private final JButton nyeiernybåt;
+    private final JButton nyeiernyBåt;
     private final JButton fjerneier;
     private final JButton skrivut;
     private final JButton skifteier;
     private final JButton skrivliste;
     private final JButton velgfil;
     private final JButton finneier;
+    private final JButton regbåt;
+    private final JButton slettbåt;
     
     private final JTextField merke;
     private final JTextField type;
@@ -72,16 +80,18 @@ public class BåtVindu extends JFrame
         
         //Oppretter vindues knapper
         nyeier = new JButton("Ny Eier");
-        nyeiernybåt = new JButton("Ny Eier/Båt");
+        nyeiernyBåt = new JButton("Ny Eier/Båt");
         fjerneier = new JButton("Fjern Eier");
-        skrivut = new JButton("Finn");
+        skrivut = new JButton("Finn Person");
         skifteier = new JButton("Skift Eier");
         skrivliste = new JButton("Skriv ut Liste");
         velgfil = new JButton("Velg Fil");
-        finneier = new JButton("Finn Eier");
+        finneier = new JButton("Finn Eier til båt");
+        regbåt = new JButton("Reg Båt");
+        slettbåt = new JButton("Slett båt");
         
         
-        //Opretter tekstfielt for registrering av båt/eier     
+        //Opretter tekstfielt for registrering av Båt/eier     
         merke = new JTextField( 15 );
         type = new JTextField( 10 );
         regnr = new JTextField( 8 );
@@ -100,6 +110,9 @@ public class BåtVindu extends JFrame
         utskrift = new JTextArea( 50, 100 );
         utskrift.setEditable( false );
         JScrollPane scroll = new JScrollPane( utskrift );
+        utskrift.setText("-Skriv inn regnr på båten du ønsker å omregristree og "
+                + "medlemsnummer for ny eier."
+                + "\n-Søk i register går på medlemsnummer.");
         
         
         // legger elementene i vinduet fra venstre mot høyre.
@@ -107,13 +120,15 @@ public class BåtVindu extends JFrame
         c.setLayout( new FlowLayout() );
         
         c.add( nyeier );
-        c.add( nyeiernybåt );
+        c.add( nyeiernyBåt );
         c.add( fjerneier );
         c.add( skrivut );
         c.add( skifteier );
         c.add( skrivliste );
         c.add( velgfil );
         c.add( finneier );
+        c.add( regbåt );  
+        c.add( slettbåt );
         c.add( new JLabel("Fornavn: ") );
         c.add( fornavn );
         c.add( new JLabel("Etternavn: "));
@@ -122,8 +137,8 @@ public class BåtVindu extends JFrame
         c.add( adresse );
         c.add( new JLabel("Medlemmsnummer1: "));
         c.add( medlemsnummer1 );
-        c.add( new JLabel("Medlemmsnummer2: "));
-        c.add( medlemsnummer2 );
+        //c.add( new JLabel("Medlemmsnummer2: "));
+        //c.add( medlemsnummer2 );
         c.add( new JLabel("Merke: "));
         c.add( merke );
         c.add( new JLabel("Type: "));
@@ -143,13 +158,20 @@ public class BåtVindu extends JFrame
         
         //knytter ActionListener til knappene 
         nyeier.addActionListener( this.lytter );
-        nyeiernybåt.addActionListener( this.lytter );
+        nyeiernyBåt.addActionListener( this.lytter );
         fjerneier.addActionListener( this.lytter );
         skrivut.addActionListener( this.lytter );
         skifteier.addActionListener( this.lytter );
         skrivliste.addActionListener( this.lytter );
         velgfil.addActionListener( this.lytter );
         finneier.addActionListener( this.lytter );
+        regbåt.addActionListener( this.lytter );
+        slettbåt.addActionListener(this.lytter);
+    }
+    
+    public boolean sjekkRegnr(String reg)
+    {
+        return register.finnBåtEier(reg) == null;
     }
  
     public void nyEier()
@@ -184,13 +206,20 @@ public class BåtVindu extends JFrame
             int leng = Integer.parseInt( lengde.getText());
             int hest = Integer.parseInt( hk.getText());
             String sfarge = skrogfarge.getText();
-        
-            Båt nybåt = new Båt( reg, leng, hest, m , typ, sfarge, år );
-            Båteier ny = new Båteier( fnavn, enavn, adr, nybåt );
-            register.settInn( ny );
-            utskrift.append("Du har registrert: \n"
-                             + ny.toString() );
-            slettFelt();
+            
+            if (sjekkRegnr(reg) )
+            {
+                Båteier ny = new Båteier( fnavn, enavn, adr );
+                Båt båt = new Båt(reg, leng, hest, m, typ, sfarge, år);
+                ny.getBåtliste().settInn( båt );
+                register.settInn( ny );
+                utskrift.append("Du har registrert: \n"
+                                 + ny.toString() );
+                slettFelt();
+            }
+            else
+                utskrift.append("Registreringsnummeret er i bruk av en annen båt."
+                      + " Vennligst skriv inn et annet registreringsnummer.");  
             
         }
         catch( NumberFormatException e )
@@ -201,7 +230,7 @@ public class BåtVindu extends JFrame
     
     /**
      * Kaller register sin finnEier og sltter eieren ved hjelp
-     * av register sin slettBåteier hvis eier ikke eier en båt. 
+     * av register sin slettBåteier hvis eier ikke eier en Båt. 
      * 
      */
     
@@ -217,12 +246,15 @@ public class BåtVindu extends JFrame
             int hest = Integer.parseInt( hk.getText());
             String sfarge = skrogfarge.getText();
             int medlemsnr = Integer.parseInt( medlemsnummer1.getText() );
-        
-            Båteier båteier = register.finnEier( medlemsnr );
-            Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
-            båteier.setBåt( ny );
-            utskrift.append( båteier.toString() );
-            slettFelt();
+            
+            if( sjekkRegnr(reg) )
+            {
+                Båteier båteier = register.finnEier( medlemsnr );
+                Båt ny = new Båt( reg, leng, hest, m , typ, sfarge, år );
+                båteier.getBåtliste().settInn( ny );
+                utskrift.append( båteier.toString() );
+                slettFelt();
+            }
         }
         catch( NumberFormatException e )
         {
@@ -241,15 +273,17 @@ public class BåtVindu extends JFrame
                 utskrift.append("Du har fjernet eieren \n");
                 slettFelt();
             }     
+            else
+                utskrift.setText("Eieren har en eller flere båter, fjern disse først.");
         }
         catch( NumberFormatException e )
         {
-            utskrift.append("Du har skrevet inn en feil. ");
+            utskrift.append("Du har skrevet inn en feil. \n");
         }
     }
      
     /**
-     * skriver ut info for en gitt båteier.
+     * skriver ut info for en gitt Båteier.
      */
     
     public void finnEier()
@@ -263,7 +297,7 @@ public class BåtVindu extends JFrame
         }
         catch( NumberFormatException e )
         {
-            utskrift.append("Feil format: medlemsnummer. ");
+            utskrift.append("Feil format: medlemsnummer. \n");
         }
     }
     
@@ -277,31 +311,75 @@ public class BåtVindu extends JFrame
         }
         catch( NumberFormatException e )
         {
-            utskrift.append("Regnummer må være ett tall. ");
+            utskrift.append("Regnummer må være ett tall. \n");
         }
     }
     
     /**
-     * metode for eierskifte av båt
+     * metode for eierskifte av Båt
      */
     
     public void skiftEier()
     {
-        int medlemsnr1 = Integer.parseInt( medlemsnummer1.getText() );
-        int medlemsnr2 = Integer.parseInt( medlemsnummer2.getText() );
-        int båtreg = Integer.parseInt( regnr.getText() );
-        Båteier eier1 = register.finnEier( medlemsnr1 );
-        Båteier eier2 = register.finnEier( medlemsnr2 );
-        Båt båt1 = eier1.getBåt();
-        eier1.setBåt(null);
-        eier2.setBåt(båt1);
-        utskrift.append("Båt med registeringsnummer " + båtreg + 
-                " er nå registert på " + eier2.toString() );
-        slettFelt();
+        try
+        {
+            String reg = regnr.getText();
+            int tall = Integer.parseInt(medlemsnummer1.getText());
+            Båteier forrige = register.finnBåtEier( reg );
+            Båteier ny = register.finnEier( tall );
+            ny.getBåtliste().settInn(forrige.getBåtliste().finnBåt(reg));
+            forrige.getBåtliste().slettBåt(reg);
+            
+            /**
+            if( ny.getBåt() == null )
+            {
+                ny.setBåt( forrige.getBåt() );
+                forrige.setBåt(null);
+                utskrift.append("Båt med registeringsnummer " + reg + 
+                    "\n er nå registert på " + ny.toString() );
+            }
+            else
+            {
+                utskrift.setText("Den nye eieren har allerede en båt. ");
+            }
+            */
+            /**
+            int medlemsnr1 = Integer.parseInt( medlemsnummer1.getText() );
+            int medlemsnr2 = Integer.parseInt( medlemsnummer2.getText() );
+            String Båtreg = regnr.getText() ;
+            Båteier eier1 = register.finnEier( medlemsnr1 );
+            Båteier eier2 = register.finnEier( medlemsnr2 );
+            Båt Båt1 = eier1.getBåt();
+            eier1.setBåt(null);
+            eier2.setBåt(Båt1);
+            utskrift.append("Båt med registeringsnummer " + Båtreg + 
+                    "\n er nå registert på " + eier2.toString() );
+            slettFelt(); 
+            */
+        }
+        catch( NumberFormatException e)
+        {
+            utskrift.append("Feil tallformat. \n");
+        }
+        catch( NullPointerException npe )
+        {
+            utskrift.setText("Båten eller eieren du ønsket å omregristrere "
+                    + "er ikke i registeret. ");
+        }
+    }
+    
+    public void fjernBåt()
+    {
+        String reg = regnr.getText();
+        Båteier eier = register.finnBåtEier( reg );
+        if( eier.getBåtliste().slettBåt(reg) )
+            utskrift.setText("Båten er fjernet fra \n" + eier.toString() );
+        else
+            utskrift.setText("Noe gikk galt.");
     }
     
     /**
-     * skriver ut hele register lista med all info om eier og båt.
+     * skriver ut hele register lista med all info om eier og Båt.
      */
     
     public void skrivListe()
@@ -325,33 +403,34 @@ public class BåtVindu extends JFrame
         medlemsnummer2.setText("");      
     }
 
-    public void velgFil()
+    public void lesFraFil()
     {
         JFileChooser fil = new JFileChooser();
         fil.setCurrentDirectory( new File (".") );
         int svar =  fil.showOpenDialog( this );
-        
-        if( svar == JFileChooser.APPROVE_OPTION )
+
+        filsti = fil.getSelectedFile().getAbsolutePath();
+        try( ObjectInputStream input = new ObjectInputStream( 
+                new FileInputStream( filsti )) )
         {
-            filsti = fil.getSelectedFile().getAbsolutePath();
-            try( ObjectInputStream input = new ObjectInputStream( 
-                    new FileInputStream( filsti )) )
-            {
-                register = (EierRegister) input.readObject();
-                register.første.setNesteNr( input.readInt() );
-            }
-            catch( ClassNotFoundException e )
-            {
-                // passende feilhåndtering
-            }
-            catch( FileNotFoundException e )
-            {
-                utskrift.append("Filen er ikke funnet. ");
-            }
-            catch( IOException e )
-            {
-                // passende feilhåndtering
-            }
+            register = (EierRegister) input.readObject();
+            register.første.setNesteNr( input.readInt() );
+        }
+        catch( ClassNotFoundException e )
+        {
+            // passende feilhåndtering
+        }
+        catch( FileNotFoundException e )
+        {
+            utskrift.append("Filen er ikke funnet. \n");
+        }
+        catch( EOFException  e )
+        {
+            utskrift.append("Filen er lastet. \n");
+        }
+        catch( IOException e )
+        {
+            utskrift.append("Feil under lesing av fil. \n");
         }
     }
     
@@ -361,22 +440,27 @@ public class BåtVindu extends JFrame
      * til fil. 
      */
     
-    public void skrivTilFil()
+    public void skrivTilFil() throws NullPointerException 
     {
+
         try( ObjectOutputStream output = new ObjectOutputStream( 
                     new FileOutputStream( filsti )) )
         {
             output.writeObject( register );
             output.writeInt( register.første.getNesteNr() );
+            output.close();
+
         }
         catch( FileNotFoundException e )
         {
-            // passende feilhåndtering
+            utskrift.append("Feil ved skriving til fil. \n");
         }
         catch( IOException e )
         {
-            // passende feilhåndtering
+            utskrift.append("Feil ved skriving til fil. \n");
+    
         }
+
     }
 
     private class Lytter implements ActionListener
@@ -388,7 +472,7 @@ public class BåtVindu extends JFrame
             {
                 nyEier();
             }
-            else if( e.getSource() == nyeiernybåt )
+            else if( e.getSource() == nyeiernyBåt )
             {
                 nyEierNyBåt();
             }
@@ -410,11 +494,19 @@ public class BåtVindu extends JFrame
             }
             else if( e.getSource() == velgfil )
             {
-                velgFil();
+                lesFraFil();
             }
             else if( e.getSource() == finneier)
             {
                 finnBåteier();
+            }
+            else if( e.getSource() == regbåt )
+            {
+                registrerBåt();
+            }
+            else if( e.getSource() == slettbåt)
+            {
+                fjernBåt();
             }
         }
     }
