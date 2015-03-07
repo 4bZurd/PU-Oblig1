@@ -7,12 +7,13 @@ package pu.oblig1;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Odd
  */
-public class BåtProg
+public class BaatProg
 {
     public static void main(String[] args)
     {
@@ -20,14 +21,31 @@ public class BåtProg
         BåtVindu vindu = new BåtVindu(register);
         vindu.setSize(1024, 768);
         vindu.setVisible(true);
-        vindu.velgFil();
+        try
+        {
+            vindu.lesFraFil();
+        }
+        catch( NullPointerException e)
+        {
+            
+        }
         
         vindu.addWindowListener(new WindowAdapter() {
         @Override
         public void windowClosing(WindowEvent e)
         {
-            vindu.skrivTilFil();
-            System.exit(0);
+            try
+            {
+                vindu.skrivTilFil();       
+            }
+            catch( NullPointerException npe )
+            {
+                int svar = JOptionPane.showConfirmDialog(null, "Du har ikke lagret."
+                        + "\nØnsker du å forsette uten å lagre?", "Advarsel",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+                if( svar ==  JOptionPane.YES_OPTION)
+                    System.exit(0);   
+            }
         }
         });
     }
