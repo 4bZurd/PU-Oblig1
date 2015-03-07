@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pu.oblig1;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package oblig;
 
 import java.io.Serializable;
 
@@ -19,9 +24,9 @@ public class Båteier implements Serializable
     private int medlemsnummer;
     private static int nestenr = 1;
     Båteier neste;
-    private Båt båt;
+    private final Båtliste båtliste;
     
-    // Benyttes dersom eierskap til båt er ukjent. 3 parametre i konstruktør.
+    // Benyttes dersom eierskap til Båt er ukjent. 3 parametre i konstruktør.
     
     public Båteier(String fornavn, String etternavn, String adresse)
     {
@@ -29,20 +34,11 @@ public class Båteier implements Serializable
         this.etternavn = etternavn;
         this.adresse = adresse;
         medlemsnummer = nestenr++; 
-        båt = null;
+        båtliste = new Båtliste();
     }
     
-    //Benyttes dersom man vet hvilken båt som eieren eier. 4 parametre.
+    //Benyttes dersom man vet hvilken Båt som eieren eier. 4 parametre.
     
-    public Båteier(String fornavn, String etternavn, String adresse, Båt båt)
-    {
-        this.fornavn = fornavn;
-        this.etternavn = etternavn;
-        this.adresse = adresse;
-        medlemsnummer = nestenr++; 
-        this.båt = båt;
-    }
-
     public String getFornavn()
     {
         return fornavn;
@@ -93,14 +89,15 @@ public class Båteier implements Serializable
         nestenr = n;
     }
 
-    public Båt getBåt() {
-        return båt;
+    public Båtliste getBåtliste() {
+        return båtliste;
     }
+    /**
+    public void setBåt(Båt Båt) {
+        this.Båt = Båt;
+    }
+    */
 
-    public void setBåt(Båt båt) {
-        this.båt = båt;
-    }
-    
     // Returnerer en String med eierinformasjon som kan vises i vindu.
     
     @Override
@@ -115,9 +112,9 @@ public class Båteier implements Serializable
         bygger.append(adresse);
         bygger.append("\nMedlemsnummer: ");
         bygger.append(medlemsnummer);    
-        if( båt != null)
+        if( båtliste != null)
         {
-            bygger.append(båt.toString());
+            bygger.append( båtliste.toString());
             bygger.append("\n\n");
             return bygger.toString();
         } else {
