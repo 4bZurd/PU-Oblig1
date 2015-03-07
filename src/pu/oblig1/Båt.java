@@ -21,6 +21,7 @@ public class Båt implements Serializable
     private final int hkr;
     private final String fargen;
     private final int alder;
+    Båt neste;
       
     //Klassens konstruktør
     public Båt(String rnr, int fot, int hk, String merke, String type, String farge, int år)
@@ -39,7 +40,7 @@ public class Båt implements Serializable
         return regnr;
     }
   
-    //Klassens toStringmetode, skriver ut informasjon om båten
+    //Klassens toStringmetode, skriver ut informasjon om Båten
     @Override
     public String toString()
     {
