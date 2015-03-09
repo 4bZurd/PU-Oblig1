@@ -16,6 +16,7 @@ import java.io.Serializable;
  *
  * @author Thomas
  */
+ 
 public class Båteier implements Serializable
 {
     private String fornavn;
@@ -26,8 +27,7 @@ public class Båteier implements Serializable
     Båteier neste;
     private final Båtliste båtliste;
     
-    // Benyttes dersom eierskap til Båt er ukjent. 3 parametre i konstruktør.
-    
+    //Klassens konstruktør.
     public Båteier(String fornavn, String etternavn, String adresse)
     {
         this.fornavn = fornavn;
@@ -36,34 +36,33 @@ public class Båteier implements Serializable
         medlemsnummer = nestenr++; 
         båtliste = new Båtliste();
     }
-    
-    //Benyttes dersom man vet hvilken Båt som eieren eier. 4 parametre.
-    
+    //Get-metode for eiers fornavn. Benyttes ikke i dette programmet.
     public String getFornavn()
     {
         return fornavn;
     }
-
+    //Set-metode for eiers fornavn. Benyttes ikke i dette programmet.
     public void setFornavn(String fornavn)
     {
         this.fornavn = fornavn;
     }
-
+    
+    //Get-metode for eiers etternavn. Benyttes ikke i dette programmet.
     public String getEtternavn()
     {
         return etternavn;
     }
-
+    //Set-metode for eiers etternavn. Benyttes ikke i dette programmet.
     public void setEtternavn(String etternavn)
     {
         this.etternavn = etternavn;
     }
-
+    //Get-metode for eiers adresse. Benyttes ikke i dette programmet.
     public String getAdresse()
     {
         return adresse;
     }
-
+    //Set-metode for eiers adresse. Benyttes ikke i dette programmet.
     public void setAdresse(String adresse)
     {
         this.adresse = adresse;
@@ -72,16 +71,6 @@ public class Båteier implements Serializable
     public int getMedlemsnummer()
     {
         return medlemsnummer;
-    }
-
-    public void setMedlemsnummer(int medlemsnummer)
-    {
-        this.medlemsnummer = medlemsnummer;
-    }
-    
-    public int getNesteNr()
-    {
-        return nestenr;
     }
     
     public void setNesteNr( int n )
@@ -92,11 +81,6 @@ public class Båteier implements Serializable
     public Båtliste getBåtliste() {
         return båtliste;
     }
-    /**
-    public void setBåt(Båt Båt) {
-        this.Båt = Båt;
-    }
-    */
 
     // Returnerer en String med eierinformasjon som kan vises i vindu.
     
@@ -112,7 +96,7 @@ public class Båteier implements Serializable
         bygger.append(adresse);
         bygger.append("\nMedlemsnummer: ");
         bygger.append(medlemsnummer);    
-        if( båtliste != null)
+        if( båtliste != null) //Hvis båteier har båt registrert
         {
             bygger.append( båtliste.toString());
             bygger.append("\n\n");
