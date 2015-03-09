@@ -9,7 +9,7 @@
  * and open the template in the editor.
  */
 package oblig;
-
+//Nødvendige import-setninger
 import java.io.Serializable;
 import javax.swing.JTextArea;
 
@@ -17,10 +17,12 @@ import javax.swing.JTextArea;
  *
  * @author Odd
  */
+ 
 public class EierRegister implements Serializable
 {
     Båteier første;
     
+    //Setter inn ny eier i programmets eierliste.
     public void settInn( Båteier ny )
     {
         if( ny == null )
@@ -35,7 +37,7 @@ public class EierRegister implements Serializable
         }
     }
 
-    
+    //Finner eier ved hjelp av medlemsnummer.
     public Båteier finnEier( int nr )
     {
         Båteier løper = første;
@@ -51,6 +53,7 @@ public class EierRegister implements Serializable
         return null;
     }
     
+    //Sletter båteier ved hjelp av medlemsnummer.
     public boolean slettBåteier( int medlemsnr )
     {
         Båteier løper = første;
@@ -75,6 +78,7 @@ public class EierRegister implements Serializable
         return false;
     }
     
+    //Finner eier til båt med gitt registreringsnummer.
     public Båteier finnBåtEier( String regnr)
     {
         Båteier løper = første;
@@ -93,6 +97,7 @@ public class EierRegister implements Serializable
         return null;
     }
     
+    //Skriver ut info om eiere.
     public void skrivListe( JTextArea utskriftområde )
     {
         Båteier løper = første;
@@ -103,4 +108,4 @@ public class EierRegister implements Serializable
             løper = løper.neste;
         }
     }    
-}
+}//end of class
