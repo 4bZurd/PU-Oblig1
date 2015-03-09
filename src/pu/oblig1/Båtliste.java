@@ -11,10 +11,12 @@ import java.io.Serializable;
  *
  * @author Marthejansonskogen
  */
+ 
 public class Båtliste implements Serializable
 {
 	    Båt første;
-    
+    	
+    	    //Setter inn en ny båt i båtlisten
 	    public void settInn( Båt ny )
 	    {
 	        if( ny == null )
@@ -29,7 +31,7 @@ public class Båtliste implements Serializable
 	        }
 	    }
 
-    
+    	    //Finner båt i båtlisten ved hjelp av registreringsnummer.
 	    public Båt finnBåt( String nr )
 	    {
 	        Båt løper = første;
@@ -44,7 +46,8 @@ public class Båtliste implements Serializable
 	        }
 	        return null;
 	    }
-    
+	    
+    	    //Sletter båt fra listen, med registreringsnummer.
 	    public boolean slettBåt( String regnr )
 	    {
 	        Båt løper = første;
@@ -68,12 +71,13 @@ public class Båtliste implements Serializable
 	        return false;
 	    }
             
+            //Sjekker om båtlisten er tom.
             public boolean erTom()
             {
                 return første == null;
             }
     
-
+	    //Klassens toString-metode. Skriver ut info om båtene i listen.
             @Override
 	    public String toString()
 	    {
