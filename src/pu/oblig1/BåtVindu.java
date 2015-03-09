@@ -169,10 +169,20 @@ public class BåtVindu extends JFrame
         slettbåt.addActionListener(this.lytter);
     }
     
+    /**
+     * skjekker om båt med gitt regnr eksisterer i registeret.
+     * @param reg tar i mot regnr i parameter
+     * @return true hvis regnr ikke ekisterer.
+     */
+    
     public boolean sjekkRegnr(String reg)
     {
         return register.finnBåtEier(reg) == null;
     }
+    
+    /**
+     * oppretter en ny eier i EierRegister.
+     */
  
     public void nyEier()
     {
@@ -191,6 +201,12 @@ public class BåtVindu extends JFrame
             slettFelt();    
         }
     }
+    
+    /**
+     * Oppretter ny eier i registeret og tilhørende båt.
+     */
+    
+    
 
     public void nyEierNyBåt()
     {
@@ -260,8 +276,11 @@ public class BåtVindu extends JFrame
         {
             utskrift.append("Feil format for tall, se om du har tastet riktig. \n");
         }
-
     }
+    
+    /**
+     * metode for å slette eier, dette er bare mulig hvis eieren ikke har noen båt.
+     */
     
     public void slettEier()
     {
@@ -301,6 +320,11 @@ public class BåtVindu extends JFrame
         }
     }
     
+    /**
+     * Metoden skriver ut informasjon om en eier og eierens båter
+     * ved hjelp av medlemsnummer.
+     */
+    
     public void finnBåteier()
     {
         try
@@ -316,7 +340,8 @@ public class BåtVindu extends JFrame
     }
     
     /**
-     * metode for eierskifte av Båt
+     * Metoden henter båt-objektet tilhørende forrige eier og setter inn 
+     * til den nye eieren ved hjelp av medlemsnummer.
      */
     
     public void skiftEier()
@@ -368,6 +393,10 @@ public class BåtVindu extends JFrame
         }
     }
     
+    /**
+     * metoden fjerner båt fra båtlisten til en eier.
+     */
+    
     public void fjernBåt()
     {
         String reg = regnr.getText();
@@ -387,6 +416,10 @@ public class BåtVindu extends JFrame
         register.skrivListe(utskrift);
     }
     
+    /**
+     *  alle input felt i vinduet
+     */
+    
     public void slettFelt()
     {
         merke.setText("");
@@ -402,6 +435,10 @@ public class BåtVindu extends JFrame
         medlemsnummer1.setText("");
         medlemsnummer2.setText("");      
     }
+    
+    /**
+     * metoden som leser fra fil.
+     */
 
     public void lesFraFil()
     {
