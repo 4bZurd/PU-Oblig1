@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class BaatProg
 {
+    //Programmets main-metode.
     public static void main(String[] args)
     {
         EierRegister register = new EierRegister();
