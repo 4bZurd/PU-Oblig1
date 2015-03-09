@@ -34,7 +34,7 @@ public class Båt implements Serializable
         fargen = farge;
         alder = år;
     }
-  
+    //Get-metode for båtens registreringsnummer
     public String getRegnr() 
     {
         return regnr;
